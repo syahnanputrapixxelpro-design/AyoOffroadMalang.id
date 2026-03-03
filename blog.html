@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | AyoOffroadMalang.id</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #ff6b00;
+            --secondary-color: #212529;
+            --accent-color: #ffc107;
+            --light-color: #f8f9fa;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Override Bootstrap Text Muted for Dark Theme */
+        .text-muted {
+            color: #b0b0b0 !important;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(33, 37, 41, 0.95) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .navbar-toggler {
+            border-color: var(--primary-color);
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 10px 30px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-custom:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        /* Blog Header */
+        .blog-header {
+            padding: 150px 0 60px 0;
+            text-align: center;
+            background: linear-gradient(to bottom, #1e1e1e, #121212);
+        }
+
+        .blog-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .blog-subtitle {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Search Bar */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 120px 15px 50px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: #1e1e1e;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            bottom: 5px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 0 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #d85a00;
+        }
+
+        /* Blog Card */
+        .blog-card {
+            background-color: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 107, 0, 0.3);
+        }
+
+        .blog-img-wrapper {
+            position: relative;
+            height: 220px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .blog-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .blog-card:hover .blog-img {
+            transform: scale(1.05);
+        }
+
+        .blog-badge {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e60000;
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            border-bottom: 3px solid;
+            border-image: linear-gradient(to right, white, white) 1;
+            /* styling somewhat resembles the screenshot's distinctive white bottom border text box */
+        }
+
+        .blog-badge-wrapper {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .blog-badge-inner {
+            background: linear-gradient(to bottom, #cc0000, #990000);
+            display: inline-block;
+            padding: 8px 15px;
+            border-radius: 5px 5px 0 0;
+            border: 2px solid white;
+            border-bottom: none;
+        }
+
+        .blog-badge-title {
+            color: white;
+            font-weight: 900;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        .blog-badge-subtitle {
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+
+        .blog-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .blog-title-text {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1.4;
+        }
+
+        .blog-title-text:hover {
+            color: var(--primary-color);
+        }
+
+        .blog-excerpt {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #fff;
+        }
+
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Pagination */
+        .pagination {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            justify-content: center;
+        }
+
+        .page-link {
+            background-color: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            margin: 0 5px;
+            border-radius: 8px !important;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover {
+            background-color: rgba(255, 107, 0, 0.2);
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .page-link.arrow {
+            background-color: #2a2a2a;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 60px 0 20px;
+            border-top: 5px solid var(--primary-color);
+            margin-top: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            color: #888;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #222;
+            color: #fff;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links ul li a::before {
+            content: '\F284';
+            font-family: 'bootstrap-icons';
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #888;
+        }
+
+        .contact-info li i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 991px) {
+            .navbar-brand {
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: clamp(14px, 4.5vw, 1.1rem);
+                letter-spacing: 0px;
+            }
+
+            .blog-title {
+                font-size: 2rem;
+            }
+
+            .blog-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .search-input {
+                padding: 12px 100px 12px 40px;
+            }
+
+            .search-btn {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">AyoOffroadMalang.id</a>
+            <!-- Mobile Menu Burger -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#packages">Paket</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="https://wa.me/6282211221909" target="_blank" class="btn btn-custom px-4 py-2"
+                            style="font-size: 0.9rem;">
+                            <i class="bi bi-telephone-fill"></i> Hubungi Kami
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Header & Search -->
+    <section class="blog-header">
+        <div class="container">
+            <h1 class="blog-title">Blog AyoOffroadMalang.id</h1>
+            <p class="blog-subtitle">Dapatkan tips seru, panduan lokasi, dan inspirasi petualangan menantang dengan jeep
+                4x4 untuk family gathering maupun acara Anda di Kota Malang dan Batu.</p>
+
+            <div class="search-container">
+                <form action="#" method="GET">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Cari artikel, tips, promo...">
+                    <button type="submit" class="search-btn">Cari</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Blog Item 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-img-wrapper">
+                            <img src="img/Slide29.webp" alt="Paket Fun Offroad" class="blog-img">
+                            <div class="blog-badge-wrapper">
+                                <div class="blog-badge-inner">
+                                    <p class="blog-badge-title">Jasa Paket Outbound</p>
+                                    <p class="blog-badge-subtitle">Batu - Malang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <a href="panduan-lengkap-offroad-pemula-medan-ekstrem.html" class="blog-title-text">Panduan
+                                Lengkap Offroad bagi Pemula: Menaklukkan Medan Ekstrem dengan Aman dan Percaya Diri</a>
+                            <p class="blog-excerpt">Nikmati adrenalin di tengah alam Batu Malang yang asri dengan paket
+                                offroad terbaik. Temukan keseruan berkumpul bersama sahabat.</p>
+                            <a href="panduan-lengkap-offroad-pemula-medan-ekstrem.html" class="read-more">Baca
+                                Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Item 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-img-wrapper">
+                            <img src="img/Slide30.webp" alt="Pengalaman Seru" class="blog-img">
+                            <div class="blog-badge-wrapper">
+                                <div class="blog-badge-inner">
+                                    <p class="blog-badge-title">Jasa Paket Outbound</p>
+                                    <p class="blog-badge-subtitle">Batu - Malang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <a href="destinasi-offroad-terbaik-indonesia-medan-ekstrem.html"
+                                class="blog-title-text">Eksplorasi Jalur Menantang: Daftar Destinasi Offroad Terbaik di
+                                Indonesia untuk Menguji Adrenalin</a>
+                            <p class="blog-excerpt">Temukan destinasi offroad terbaik di Indonesia untuk menguji
+                                adrenalin Anda. Temukan panduan rute 4x4 paling ekstrem dari Bromo hingga Kalimantan.
+                            </p>
+                            <a href="destinasi-offroad-terbaik-indonesia-medan-ekstrem.html" class="read-more">Baca
+                                Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Item 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-img-wrapper">
+                            <img src="img/Slide58.webp" alt="5 Tips Persiapan" class="blog-img">
+                            <div class="blog-badge-wrapper">
+                                <div class="blog-badge-inner"
+                                    style="background: linear-gradient(to bottom, #d3d3d3, #a9a9a9); border-color: white;">
+                                    <p class="blog-badge-title" style="color: #c00;">Vendor Paket Outbound</p>
+                                    <p class="blog-badge-subtitle" style="color: #000080; font-size: 1rem;">Batu -
+                                        Malang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <a href="modifikasi-wajib-mobil-offroad.html" class="blog-title-text">5 Modifikasi Wajib
+                                Mobil Offroad Sebelum Terjun ke Lumpur dan Bebatuan</a>
+                            <p class="blog-excerpt">Mau offroad tapi belum pernah sama sekali? Simak ulasan jalur
+                                favorit dengan tantangan aman yang cocok dilalui bersama komunitas.</p>
+                            <a href="modifikasi-wajib-mobil-offroad.html" class="read-more">Baca Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Item 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-img-wrapper">
+                            <img src="img/Slide64.webp" alt="Tips Persiapan" class="blog-img">
+                            <div class="blog-badge-wrapper">
+                                <div class="blog-badge-inner"
+                                    style="background: linear-gradient(to bottom, #d3d3d3, #a9a9a9); border-color: white;">
+                                    <p class="blog-badge-title" style="color: #c00;">Vendor Paket Outbound</p>
+                                    <p class="blog-badge-subtitle" style="color: #000080; font-size: 1rem;">Batu -
+                                        Malang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <a href="teknik-dasar-recovery-cara-menggunakan-winch-dan-strap.html"
+                                class="blog-title-text">Tips Persiapan Wajib Sebelum Mencoba Offroad untuk
+                                Pemula</a>
+                            <p class="blog-excerpt">Teknik Dasar Recovery: Cara Menggunakan Winch dan Strap Saat Mobil
+                                Terjebak</p>
+                            <a href="teknik-dasar-recovery-cara-menggunakan-winch-dan-strap.html" class="read-more">Baca
+                                Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Item 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-img-wrapper">
+                            <img src="img/Slide25.webp" alt="Alasan Paket Cocok" class="blog-img">
+                            <div class="blog-badge-wrapper">
+                                <div class="blog-badge-inner"
+                                    style="background: linear-gradient(to bottom, #d3d3d3, #a9a9a9); border-color: white;">
+                                    <p class="blog-badge-title" style="color: #c00;">Vendor Paket Outbound</p>
+                                    <p class="blog-badge-subtitle" style="color: #000080; font-size: 1rem;">Batu -
+                                        Malang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <a href="perawatan-wajib-mobil-setelah-offroad.html" class="blog-title-text">Alasan Paket
+                                Fun Offroad Jeep Coban Putri Cocok untuk
+                                Pemula</a>
+                            <p class="blog-excerpt">Jangan Langsung Parkir! Ini Ritual Perawatan Mobil yang Wajib
+                                Dilakukan Setelah Main Offroad</p>
+                            <a href="perawatan-wajib-mobil-setelah-offroad.html" class="read-more">Baca Selengkapnya <i
+                                    class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Item 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="blog-card">
+                        <div class="blog-img-wrapper">
+                            <img src="img/Slide26.webp" alt="Kegiatan LDKS" class="blog-img">
+                            <div class="blog-badge-wrapper">
+                                <div class="blog-badge-inner"
+                                    style="background: linear-gradient(to bottom, #d3d3d3, #a9a9a9); border-color: white;">
+                                    <p class="blog-badge-title" style="color: #c00;">Vendor Paket Outbound</p>
+                                    <p class="blog-badge-subtitle" style="color: #000080; font-size: 1rem;">Batu -
+                                        Malang</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="blog-body">
+                            <a href="#" class="blog-title-text">Kegiatan LDKS Sekolah di Batu: Solusi Tepat Asah
+                                Kepemimpinan</a>
+                            <p class="blog-excerpt">Aktivitas semi kemiliteran dan pembentukan karakter kepemimpinan
+                                secara outdoor untuk siswa dan organisasi sekolah.</p>
+                            <a href="#" class="read-more">Baca Selengkapnya <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link arrow" href="#" aria-label="Previous">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link arrow" href="#" aria-label="Next">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="index.html#" class="footer-logo text-decoration-none">AyoOffroadMalang.id</a>
+                    <p class="footer-text">Melayani jasa tour offroad di Batu, Malang dan Gunung Bromo. Nikmati
+                        pengalaman seru, menantang dan aman bersama tim profesional kami yang siap memberikan pelayanan
+                        terbaik.</p>
+                    <div class="social-links">
+                        <a href="index.html#"><i class="bi bi-facebook"></i></a>
+                        <a href="index.html#"><i class="bi bi-instagram"></i></a>
+                        <a href="index.html#"><i class="bi bi-tiktok"></i></a>
+                        <a href="index.html#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 mb-4 mb-lg-0 footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="index.html#hero">Beranda</a></li>
+                        <li><a href="index.html#about">Tentang Kami</a></li>
+                        <li><a href="index.html#packages">Paket Offroad</a></li>
+                        <li><a href="index.html#gallery">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Hubungi Kami</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span>Jl. Raya Ir. Soekarno No.123, Kota Batu, Jawa Timur, Indonesia</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <span>0822 1122 1909</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-whatsapp"></i>
+                            <span>0822 1122 1909</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>info@ayooffroadmalang.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 AyoOffroadMalang.id. All Rights Reserved. Designed with <i
+                        class="bi bi-heart-fill text-danger"></i> for Adventure.</p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script for Navbar -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = "10px 0";
+                navbar.style.backgroundColor = "rgba(18, 18, 18, 0.98) !important";
+            } else {
+                navbar.style.padding = "15px 0";
+                navbar.style.backgroundColor = "rgba(33, 37, 41, 0.95) !important";
+            }
+        });
+
+        // Close navbar on click (mobile)
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, { toggle: false });
+
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => {
+                if (menuToggle.classList.contains('show')) {
+                    bsCollapse.toggle();
+                }
+            })
+        });
+    </script>
+    <!-- Floating WA & Top Buttons -->
+    <div
+        style="position: fixed; bottom: 30px; right: 30px; display: flex; align-items: flex-end; gap: 15px; z-index: 9999;">
+        <a href="#" id="customBackToTop" aria-label="Back to Top"
+            style="width: 50px; height: 50px; background-color: var(--primary-color, #ff6b00); color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); text-decoration: none; transition: all 0.3s ease; opacity: 0; pointer-events: none;">
+            <i class="bi bi-arrow-up"></i>
+        </a>
+        <a href="https://wa.me/6282211221909" target="_blank" aria-label="WhatsApp"
+            style="width: 60px; height: 60px; background-color: #25d366; color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); text-decoration: none; transition: transform 0.3s ease;">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btn = document.getElementById("customBackToTop");
+            if (btn) {
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 300) {
+                        btn.style.opacity = "1";
+                        btn.style.pointerEvents = "auto";
+                    } else {
+                        btn.style.opacity = "0";
+                        btn.style.pointerEvents = "none";
+                    }
+                });
+                btn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // Search functionality
+            var searchForm = document.querySelector('.search-container form');
+            var searchInput = document.querySelector('.search-input');
+            var blogCards = document.querySelectorAll('.col-lg-4.col-md-6');
+
+            if (searchForm && searchInput) {
+                // Prevent form submission from reloading the page
+                searchForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    performSearch(searchInput.value.toLowerCase());
+                });
+
+                // Optional: live search as the user types
+                searchInput.addEventListener('input', function (e) {
+                    performSearch(e.target.value.toLowerCase());
+                });
+            }
+
+            function performSearch(query) {
+                blogCards.forEach(function (cardWrapper) {
+                    var card = cardWrapper.querySelector('.blog-card');
+                    if (card) {
+                        var title = card.querySelector('.blog-title-text');
+                        var excerpt = card.querySelector('.blog-excerpt');
+                        var badgeTitle = card.querySelector('.blog-badge-title');
+
+                        var textToSearch = "";
+                        if (title) textToSearch += title.textContent.toLowerCase() + " ";
+                        if (excerpt) textToSearch += excerpt.textContent.toLowerCase() + " ";
+                        if (badgeTitle) textToSearch += badgeTitle.textContent.toLowerCase();
+
+                        if (textToSearch.includes(query)) {
+                            cardWrapper.style.display = ''; // Show
+                        } else {
+                            cardWrapper.style.display = 'none'; // Hide
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

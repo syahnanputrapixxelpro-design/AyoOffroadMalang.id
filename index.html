@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyoOffroadMalang.id | Petualangan Offroad Terbaik di Malang</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #ff6b00;
+            /* Vibrant orange for offroad feel */
+            --secondary-color: #212529;
+            /* Dark shade */
+            --accent-color: #ffc107;
+            --light-color: #f8f9fa;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            /* Dark theme suitable for offroad */
+            color: #ffffff;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Override Bootstrap Text Muted for Dark Theme */
+        .text-muted {
+            color: #b0b0b0 !important;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(33, 37, 41, 0.95) !important;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-brand {
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 10px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hover Reveal Effect on Nav Links */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-toggler {
+            border-color: var(--primary-color);
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 107, 0, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* Hero Section */
+        #hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('img/Slide18.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 3px;
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: #ddd;
+        }
+
+        .btn-custom {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn-custom:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.6);
+        }
+
+        .btn-outline-custom {
+            background-color: transparent;
+            color: #fff;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid #fff;
+        }
+
+        .btn-outline-custom:hover {
+            background-color: #fff;
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styling */
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            display: inline-block;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-image {
+            border-radius: 20px;
+            box-shadow: -15px -15px 0 var(--primary-color);
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .about-image:hover {
+            transform: scale(1.02);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #bbb;
+        }
+
+        .features-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .features-box:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .features-box i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Packages Section */
+        .package-card {
+            background-color: #1e1e1e;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--primary-color);
+        }
+
+        .package-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .package-body {
+            padding: 30px;
+        }
+
+        .package-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .package-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            color: #aaa;
+        }
+
+        .package-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package-features li i {
+            color: var(--accent-color);
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 107, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            font-size: 3rem;
+            color: #fff;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay i {
+            transform: translateY(0);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-image: linear-gradient(rgba(255, 107, 0, 0.9), rgba(180, 75, 0, 0.9)), url('img/Slide65.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #000;
+            padding: 60px 0 20px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 900;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .footer-text {
+            color: #888;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #222;
+            color: #fff;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links ul li a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links ul li a::before {
+            content: '\F284';
+            font-family: 'bootstrap-icons';
+            margin-right: 10px;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #888;
+        }
+
+        .contact-info li i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid #222;
+            color: #666;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 991px) {
+            .navbar-brand {
+                font-size: 1.3rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: clamp(14px, 4.5vw, 1.1rem);
+                letter-spacing: 0px;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .about-image {
+                margin-bottom: 40px;
+            }
+
+            .btn-custom,
+            .btn-outline-custom {
+                padding: 12px 30px;
+                font-size: 1rem;
+                display: block;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="70">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">AyoOffroadMalang.id</a>
+            <!-- Mobile Menu Burger -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#packages">Paket</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="https://wa.me/6282211221909" target="_blank" class="btn btn-custom px-4 py-2"
+                            style="font-size: 0.9rem;">
+                            <i class="bi bi-telephone-fill"></i> Hubungi Kami
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h1 class="hero-title">Taklukkan <span>Jalur Ekstrem</span> Malang</h1>
+                    <p class="hero-subtitle">Rasakan adrenalin petualangan offroad tak terlupakan menyusuri keindahan
+                        alam Kota Batu dan Malang.</p>
+                    <div class="hero-buttons">
+                        <a href="#packages" class="btn-custom me-md-3"><i class="bi bi-compass-fill"></i> Lihat
+                            Paket</a>
+                        <a href="https://wa.me/6282211221909" target="_blank" class="btn-outline-custom"><i
+                                class="bi bi-whatsapp"></i> Reservasi Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <img src="img/Slide25.webp" alt="Offroad Trip di Malang" class="about-image img-fluid">
+                </div>
+                <div class="col-lg-6 about-text px-lg-5">
+                    <div class="mb-4">
+                        <h6 class="text-uppercase"
+                            style="color: var(--primary-color); font-weight: 700; letter-spacing: 2px;">Kenapa Memilih
+                            Kami</h6>
+                        <h2 class="display-5 fw-bold mb-4" style="font-family: 'Montserrat', sans-serif;">Penyedia
+                            Offroad #1 di Malang & Batu</h2>
+                    </div>
+                    <p>AyoOffroadMalang.id adalah partner petualangan terbaik Anda. Kami menawarkan pengalaman
+                        berkendara offroad menyusuri hutan pinus, lereng gunung, hingga jalur sungai berlumpur yang
+                        menantang namun tetap aman.</p>
+                    <p>Dengan armada jeep yang terawat, driver profesional, dan pemandangan alam yang spektakuler, kami
+                        menjamin liburan Anda di Malang akan menjadi sangat berkesan dan penuh adrenalin.</p>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="features-box">
+                                <i class="bi bi-shield-check"></i>
+                                <h5>Aman & Terpercaya</h5>
+                                <p class="mb-0 text-muted" style="font-size: 0.9rem; ">SOP Keselamatan tinggi dengan
+                                    driver berpengalaman.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="features-box">
+                                <i class="bi bi-geo-alt"></i>
+                                <h5>Rute Terbaik</h5>
+                                <p class="mb-0 text-muted" style="font-size: 0.9rem;">Menyusuri hidden gem dengan
+                                    pemandangan luar biasa.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="section-padding" style="background-color: #0a0a0a;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Paket Petualangan</h2>
+                <p class="text-muted mt-3">Pilih tingkat adrenalin sesuai keinginan Anda</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Package 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card">
+                        <img src="img/Slide26.webp" alt="Paket Fun Offroad" class="package-img">
+                        <div class="package-body">
+                            <h3 class="package-title">Fun Offroad Batu</h3>
+                            <div class="package-price">Rp 450.000 <span
+                                    style="font-size: 1rem; color: #888; font-weight: normal;">/ Pax</span></div>
+                            <ul class="package-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Durasi 3-4 Jam</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Jeep 4x4 (Maks 3-4 orang)</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Rute Hutan Pinus & Perkebunan</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Driver & Guide Berpengalaman</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Tiket Masuk Wisata</li>
+                            </ul>
+                            <a href="https://wa.me/6282211221909?text=Halo%20AyoOffroadMalang,%20saya%20tertarik%20dengan%20Paket%20Fun%20Offroad%20Batu."
+                                target="_blank" class="btn btn-custom w-100 justify-content-center">Pesan Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card"
+                        style="border-color: var(--primary-color); transform: scale(1.05); z-index: 1;">
+                        <div
+                            style="position: absolute; top: 0; right: 0; background: var(--primary-color); color: #fff; padding: 5px 15px; border-bottom-left-radius: 15px; font-weight: bold; font-size: 0.9rem;">
+                            FAVORIT</div>
+                        <img src="img/Slide27.webp" alt="Paket Extreme Bromo" class="package-img">
+                        <div class="package-body">
+                            <h3 class="package-title">Bromo Sunrise Safari</h3>
+                            <div class="package-price">Rp 650.000 <span
+                                    style="font-size: 1rem; color: #888; font-weight: normal;">/ Pax</span></div>
+                            <ul class="package-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Penjemputan Area Malang/Batu</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Jeep Hardtop 4x4</li>
+                                <li><i class="bi bi-check-circle-fill"></i> 4 Destinasi (Penanjakan, Kawah, Pasir
+                                    Berbisik, Savana)</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Snack & Air Mineral</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Dokumentasi Terbatas</li>
+                            </ul>
+                            <a href="https://wa.me/6282211221909?text=Halo%20AyoOffroadMalang,%20saya%20tertarik%20dengan%20Paket%20Bromo%20Sunrise%20Safari."
+                                target="_blank" class="btn btn-custom w-100 justify-content-center">Pesan Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="package-card">
+                        <img src="img/Slide28.webp" alt="Paket Mud Offroad" class="package-img">
+                        <div class="package-body">
+                            <h3 class="package-title">Extreme Mud Offroad</h3>
+                            <div class="package-price">Rp 850.000 <span
+                                    style="font-size: 1rem; color: #888; font-weight: normal;">/ Jeep</span></div>
+                            <ul class="package-features">
+                                <li><i class="bi bi-check-circle-fill"></i> Full Adrenalin 5 Jam+</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Susur Sungai & Jalur Berlumpur</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Jeep Khusus Offroad Ekstrem</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Makan Siang Premium</li>
+                                <li><i class="bi bi-check-circle-fill"></i> Dokumentasi Drone & DSLR (Syarat Berlaku)
+                                </li>
+                            </ul>
+                            <a href="https://wa.me/6282211221909?text=Halo%20AyoOffroadMalang,%20saya%20tertarik%20dengan%20Paket%20Extreme%20Mud%20Offroad."
+                                target="_blank" class="btn btn-custom w-100 justify-content-center">Pesan Sekarang</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Galeri Keseruan</h2>
+                <p class="text-muted mt-3">Momen tak terlupakan bersama kami</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="img/Slide29.webp" alt="Galeri 1" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="img/Slide30.webp" alt="Galeri 2" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="img/Slide58.webp" alt="Galeri 3" class="gallery-img">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="gallery-item">
+                        <img src="img/Slide64.webp" alt="Galeri 4" class="gallery-img" style="height: 350px;">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="gallery-item">
+                        <img src="img/Slide65.webp" alt="Galeri 5" class="gallery-img" style="height: 350px;">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-instagram"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="cta-title fw-bold">Siap Menguji Adrenalin Anda?</h2>
+            <p class="lead mb-5 text-white">Jangan biarkan liburan Anda biasa saja. Jadikan momen di Malang lebih
+                menantang!</p>
+            <a href="https://wa.me/6282211221909" target="_blank" class="btn btn-outline-light btn-lg"
+                style="padding: 15px 40px; font-weight: bold; border-radius: 50px; border-width: 2px;">
+                <i class="bi bi-whatsapp me-2"></i> Hubungi Kami 0822-1122-1909
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a href="#" class="footer-logo text-decoration-none">AyoOffroadMalang.id</a>
+                    <p class="footer-text">Melayani jasa tour offroad di Batu, Malang dan Gunung Bromo. Nikmati
+                        pengalaman seru, menantang dan aman bersama tim profesional kami yang siap memberikan pelayanan
+                        terbaik.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-tiktok"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 mb-4 mb-lg-0 footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#hero">Beranda</a></li>
+                        <li><a href="#about">Tentang Kami</a></li>
+                        <li><a href="#packages">Paket Offroad</a></li>
+                        <li><a href="#gallery">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6 footer-links">
+                    <h4>Hubungi Kami</h4>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            <span>Jl. Raya Ir. Soekarno No.123, Kota Batu, Jawa Timur, Indonesia</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-telephone-fill"></i>
+                            <span>0822 1122 1909</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-whatsapp"></i>
+                            <span>0822 1122 1909</span>
+                        </li>
+                        <li>
+                            <i class="bi bi-envelope-fill"></i>
+                            <span>info@ayooffroadmalang.id</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 AyoOffroadMalang.id. All Rights Reserved. Designed with <i
+                        class="bi bi-heart-fill text-danger"></i> for Adventure.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script for Navbar -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = "10px 0";
+                navbar.style.backgroundColor = "rgba(18, 18, 18, 0.98) !important";
+            } else {
+                navbar.style.padding = "15px 0";
+                navbar.style.backgroundColor = "rgba(33, 37, 41, 0.95) !important";
+            }
+        });
+
+        // Close navbar on click (mobile)
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, { toggle: false });
+
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => {
+                if (menuToggle.classList.contains('show')) {
+                    bsCollapse.toggle();
+                }
+            })
+        });
+    </script>
+    <!-- Floating WA & Top Buttons -->
+    <div style="position: fixed; bottom: 30px; right: 30px; display: flex; align-items: flex-end; gap: 15px; z-index: 9999;">
+        <a href="#" id="customBackToTop" aria-label="Back to Top" style="width: 50px; height: 50px; background-color: var(--primary-color, #ff6b00); color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); text-decoration: none; transition: all 0.3s ease; opacity: 0; pointer-events: none;">
+            <i class="bi bi-arrow-up"></i>
+        </a>
+        <a href="https://wa.me/6282211221909" target="_blank" aria-label="WhatsApp" style="width: 60px; height: 60px; background-color: #25d366; color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); text-decoration: none; transition: transform 0.3s ease;">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btn = document.getElementById("customBackToTop");
+            if (btn) {
+                window.addEventListener("scroll", function() {
+                    if (window.scrollY > 300) {
+                        btn.style.opacity = "1";
+                        btn.style.pointerEvents = "auto";
+                    } else {
+                        btn.style.opacity = "0";
+                        btn.style.pointerEvents = "none";
+                    }
+                });
+                btn.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
